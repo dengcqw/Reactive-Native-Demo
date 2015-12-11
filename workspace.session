@@ -1,0 +1,146 @@
+let SessionLoad = 1
+if &cp | set nocp | endif
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let v:this_session=expand("<sfile>:p")
+silent only
+cd ~/1_Project/react-native/AwesomeProject
+if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
+  let s:wipebuf = bufnr('%')
+endif
+set shortmess=aoO
+badd +1 ~/1_Project/react-native/AwesomeProject
+badd +40 Components/index.ios.js
+badd +33 Components/helloWorld.ios.js
+badd +710 ~/.vimrc
+badd +117 fast_syntax.txt
+badd +37 Components/shapes.ios.js
+badd +1 ios/template.js
+badd +81 Components/PAOverseaCustomerAddingInfo.js
+badd +25 ~/Library/Application\ Support/RTXC/accounts/dengjinlong/sessionPhoto/PAColorDef.js
+badd +35 Components/PAColorDef.js
+badd +6 keyword_styles.txt
+badd +1 ~/\[Vundle]\ Installer
+badd +28 Components/flexExamples.ios.js
+argglobal
+silent! argdel *
+edit Components/index.ios.js
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd w
+wincmd t
+set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
+exe '2resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 102 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 101 + 102) / 204)
+argglobal
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=3
+setlocal fen
+18
+normal! zo
+19
+normal! zo
+20
+normal! zo
+29
+normal! zo
+30
+normal! zo
+let s:l = 34 - ((15 * winheight(0) + 14) / 29)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+34
+normal! 031|
+lcd ~/1_Project/react-native/AwesomeProject/Components
+wincmd w
+argglobal
+edit ~/1_Project/react-native/AwesomeProject/Components/flexExamples.ios.js
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=3
+setlocal fen
+35
+normal! zo
+41
+normal! zo
+44
+normal! zo
+61
+normal! zo
+62
+normal! zo
+70
+normal! zo
+77
+normal! zo
+86
+normal! zo
+let s:l = 28 - ((15 * winheight(0) + 14) / 29)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+28
+normal! 03|
+wincmd w
+argglobal
+edit ~/1_Project/react-native/AwesomeProject/keyword_styles.txt
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=3
+setlocal fen
+4
+normal! zo
+48
+normal! zo
+65
+normal! zo
+let s:l = 23 - ((22 * winheight(0) + 29) / 59)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+23
+normal! 031|
+lcd ~/1_Project/react-native/AwesomeProject
+wincmd w
+2wincmd w
+exe '1resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 1resize ' . ((&columns * 102 + 102) / 204)
+exe '2resize ' . ((&lines * 29 + 30) / 61)
+exe 'vert 2resize ' . ((&columns * 102 + 102) / 204)
+exe 'vert 3resize ' . ((&columns * 101 + 102) / 204)
+tabnext 1
+if exists('s:wipebuf')
+  silent exe 'bwipe ' . s:wipebuf
+endif
+unlet! s:wipebuf
+set winheight=1 winwidth=20 shortmess=filmnrxoOtT
+let s:sx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:sx)
+  exe "source " . fnameescape(s:sx)
+endif
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :

@@ -42,7 +42,7 @@ FlexBox
     maxWidth          : number
     minHeight         : number
     minWidth          : number
-
+ 
 
 Transforms
     transform : [

@@ -60,26 +60,26 @@ var PAOverseaCustomerAddingInfo = React.createClass({
     },
 
     _onPressButton: function () {
-        ActionSheetIOS.showActionSheetWithOptions({
-            options: BUTTONS,
-            cancelButtonIndex: CANCEL_INDEX,
-            destructiveButtonIndex: DESTRUCTIVE_INDEX,
-        },
-        (buttonIndex) => {
-            this.setState({ clicked: BUTTONS[buttonIndex] });
-        },);
-        //if (this.state.selected === true)
-            //this.state.selected = false;
-        //else
-            //this.state.selected = true;
+        //ActionSheetIOS.showActionSheetWithOptions({
+            //options: BUTTONS,
+            //cancelButtonIndex: CANCEL_INDEX,
+            //destructiveButtonIndex: DESTRUCTIVE_INDEX,
+        //},
+        //(buttonIndex) => {
+            //this.setState({ clicked: BUTTONS[buttonIndex] });
+        //},);
+        if (this.state.selected === true) // use setState()
+            this.setState({selected: false});
+        else
+            this.setState({selected: true});
     },
 });
 
 var styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     // other view element style here
     selectedStyle: {

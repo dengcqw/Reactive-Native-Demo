@@ -5,6 +5,7 @@
 'use strict';
 var React = require('react-native');
 var PAOverseaCustomerAddingInfo = require('./PAOverseaCustomerAddingInfo');
+var FlexExample = require('./flexExamples');
 
 var {
     AppRegistry,
@@ -17,7 +18,8 @@ var AwesomeProject = React.createClass({
     render: function() {
         return (
             < View style = { styles.container } >
-                < PAOverseaCustomerAddingInfo style = { styles.overseaCustomerAddingInfo } />
+                < PAOverseaCustomerAddingInfo />
+                < FlexExample />
             < /View >
         );
     }
@@ -26,14 +28,10 @@ var AwesomeProject = React.createClass({
 var styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#F5FCFF',
-    },
-    overseaCustomerAddingInfo: {
-        width: 200,
-        height: 200,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
     },
 });
 
