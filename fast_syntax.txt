@@ -1,0 +1,129 @@
+
+
+Image:
+    1. network image
+    <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+    2. app bundle image
+       style={{width: 400, height: 400}} />
+    <Image source={{uri: 'app_icon'}} style={{width: 40, height: 40}} />
+    3. js bundle image
+        var icon = this.props.active ? require('./my-icon-active.png') : require('./my-icon-inactive.png');
+        <Image source={icon} />
+
+        <Image source={require('./my-icon.png')} />
+
+Responder
+    TouchableHighlight
+    Touchable
+
+    Does this view want to become responder on the start of a touch?
+        View.props.onStartShouldSetResponder: (evt) => true
+    Called for every touch move on the View when it is not the responder: does this view want to "claim" touch responsiveness?
+        View.props.onMoveShouldSetResponder: (evt) => true
+
+    View.props.onResponderGrant: (evt) => {}
+    View.props.onResponderReject: (evt) => {}
+    View.props.onResponderMove: (evt) => {}
+    View.props.onResponderRelease: (evt) => {}
+    View.props.onResponderTerminationRequest: (evt) => true
+    View.props.onResponderTerminate: (evt) => {}
+    nativeEvent: {
+        changedTouches,
+        identifier,
+        locationX,
+        locationY,
+        pageX,
+        pageY,
+        target,
+        timestamp,
+        touches,
+    }
+    onStartShouldSetResponder
+    onMoveShouldSetResponder
+    View.props.onStartShouldSetResponderCapture: (evt) => true
+    View.props.onMoveShouldSetResponderCapture: (evt) => true
+
+Animations
+compont and animated sample {
+// sample start
+    class Playground extends React.Component {
+      constructor(props: any) {
+        super(props);
+        this.state = {
+          bounceValue: new Animated.Value(0),
+        };
+      }
+      render(): ReactElement {
+        return (
+          <Animated.Image                         // Base: Image, Text, View
+            source={{uri: 'http://i.imgur.com/XMKOH81.jpg'}}
+            style={{
+              flex: 1,
+              transform: [                        // `transform` is an ordered array
+                {scale: this.state.bounceValue},  // Map `bounceValue` to `scale`
+              ]
+            }}
+          />
+        );
+      }
+      componentDidMount() {
+        this.state.bounceValue.setValue(1.5);     // Start large
+        Animated.spring(                          // Base: spring, decay, timing
+          this.state.bounceValue,                 // Animate `bounceValue`
+          {
+            toValue: 0.8,                         // Animate to smaller size
+            friction: 1,                          // Bouncier spring
+          }
+        ).start();                                // Start the animation
+      }
+    }
+// sample end
+}
+
+You can make any other component animated with
+    Animated.createAnimatedComponent
+    spring
+        friction
+        tension
+    decay
+        velocity
+        deceleration
+    timing
+        duration
+        easing
+        delay
+    Composing Animations
+        parallel
+        sequence
+        stagger
+        delay
+    value.interpolate({ // value mapping
+      inputRange: [0, 1],
+      outputRange: [0, 100],
+    });
+    Animated.event is the input side of the Animated API, 
+    allowing gestures and other events to map directly to animated values
+        onScroll={Animated.event(
+            nativeEvent: {contentOffset: {x: scrollX}}}]   // scrollX = e.nativeEvent.contentOffset.x
+        )}
+    spring.stopAnimation(callback)
+    spring.addListener(callback)
+    LayoutAnimation allows you to globally configure create and update animations that will be used for all views in the next render/layout cycle
+
+    Direct Manipulation
+    setNativeProps
+    setState
+    shouldComponentUpdate
+    TouchableOpacity
+
+    var precomputeStyle = require('precomputeStyle');
+    JavaScript Syntax Transformers
+        Syntax transformers make writing code more enjoyable by allowing you to use new JavaScript syntax without having to wait for support on all interpreters.
+    Navigator
+    NavigatorIOS
+
+    var {Platform} = React;
+    var styles = StyleSheet.create({
+      height: (Platform.OS === 'ios') ? 200 : 100,
+    });
+
