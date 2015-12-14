@@ -56,7 +56,6 @@ var flexExamples = React.createClass({
     },
 });
 
-
 var styles = StyleSheet.create({
     container: {// level 1
         //flex: 1,

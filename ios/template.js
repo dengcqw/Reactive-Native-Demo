@@ -1,5 +1,5 @@
 /**
- * ComponentName.js
+ * template.js
  * haofangtuo
 
  * Created by DengJinlong on 12/11/15.
@@ -31,8 +31,8 @@ var {
 var ComponentName = React.createClass({
     getInitialState: function() {
         return { // variable here can use by 'this.state'
-        }
-    };
+        };
+    },
 
     render: function() {
         // process state here
@@ -41,7 +41,7 @@ var ComponentName = React.createClass({
             < View style = { styles.container }>
             </View>
         );
-    };
+    },
 });
 
 var styles = StyleSheet.create({
@@ -74,4 +74,3 @@ exports.description = 'This is template file for iOS Reactive Native develop! En
  * Public Component
  *
 //AppRegistry.registerComponent('ComponentName', () => ComponentName);
-

@@ -1,0 +1,10 @@
+" This file list config for this project
+
+"map t 0f r:
+"map T 0f:r-
+
+
+""""""""" set complete  """"""" "{
+set cpt=.,b,u,U,t,i
+"}
+

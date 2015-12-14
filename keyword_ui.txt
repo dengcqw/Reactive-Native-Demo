@@ -1,0 +1,484 @@
+ActivityIndicatorIOS
+    "View"             : "props"
+    "animating"        : "bool"
+    "color"            : "string"
+    "hidesWhenStopped" : "bool"
+    "onLayout"         : fn()
+        {nativeEvent : { layout : {x, y, width, height}}}.
+    "size"             : enum('small', 'large')
+
+DatePickerIOS
+    View props... 
+    date                    : Date
+    maximumDate             : Date
+    minimumDate             : Date
+    minuteInterval          : enum(1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30)
+    mode                    : enum('date', 'time', 'datetime')
+    onDateChange            : fn()(date)
+    timeZoneOffsetInMinutes : number
+
+Image
+    onLayout    : fn()({nativeEvent : {layout : {x, y, width, height}}})
+    onLoad      : fn()
+    onLoadEnd   : fn()
+    onLoadStart : fn()
+    resizeMode  : enum('cover', 'contain', 'stretch')
+    source      : {uri : string}, number
+    testID      : string 
+    style style 
+        Flexbox...
+        Transforms...
+        resizeMode      : Object.keys(ImageResizeMode)
+        backgroundColor : string
+        borderColor     : string
+        borderWidth     : number
+        borderRadius    : number
+        overflow        : enum('visible', 'hidden')
+        tintColor       : string
+        opacity         : number
+
+    // below is ios props
+    accessibilityLabel               : string
+    accessible bool
+    capInsets                        : {top number, left  number, bottom : number, right : number}
+    defaultSource                    : {uri string}, number
+    onError                          : fn()({nativeEvent : {error}})
+    onProgress fn()({nativeEvent : {loaded, total}})
+
+ListView
+    ScrollView:props... 
+    dataSource          : ListViewDataSource
+    initialListSize     : number
+    onChangeVisibleRows : fn()
+        (visibleRows, changedRows) => void
+    onEndReached          : fn()
+    onEndReachedThreshold : number
+    pageSize              : number
+    removeClippedSubviews : bool
+    renderFooter          : fn()
+        () => renderable
+    renderHeader          : fn()
+    renderRow             : fn()
+        (rowData, sectionID, rowID, highlightRow) => renderable
+    renderScrollComponent:fn() 
+        (props) => renderable
+    renderSectionHeader:fn() 
+        (sectionData, sectionID) => renderable
+    renderSeparator:fn() 
+        (sectionID, rowID, adjacentRowHighlighted) => renderable
+    scrollRenderAheadDistance:number 
+
+Modal
+    animated           : bool
+    onDismiss fn()
+    transparent        : bool
+    visible            : bool
+
+Navigator
+
+    configureScene    : fn()
+    initialRoute      : object
+    initialRouteStack : [object]
+    navigationBar     : node
+    navigator         : object
+    onDidFocus        : fn()
+    onWillFocus       : fn()
+    renderScene       : fn()
+    sceneStyle        : View#style
+
+    getCurrentRoutes()
+    jumpBack()
+    jumpForward()
+    jumpTo(route)
+    push(route)
+    pop()
+    replace(route)
+    replaceAtIndex(route, index)
+    replacePrevious(route)
+    immediatelyResetRouteStack(routeStack)
+    popToRoute(route)
+    popToTop()
+
+NavigatorIOS
+    push(route)
+    pop()
+    popN(n)
+    replace(route)
+    replacePrevious(route)
+    replacePreviousAndPop(route)
+    resetTo(route)
+    popToRoute(route)
+    popToTop()
+
+    barTintColor        : string
+    initialRoute        : {component : fn(), title : string, passProps : object, backButtonIcon : Image.propTypes.source, backButtonTitle : string, leftButtonIcon : Image.propTypes.source, leftButtonTitle : string, onLeftButtonPress : fn(), rightButtonIcon : Image.propTypes.source, rightButtonTitle : string, onRightButtonPress : fn(), wrapperStyle : [object Object]}
+    itemWrapperStyle    : View#style
+    navigationBarHidden : bool
+    shadowHidden        : bool
+    tintColor           : string
+    titleTextColor      : string
+    translucent         : bool
+
+MapView
+View props... 
+    annotations            : [{latitude : number, longitude : number, animateDrop   : bool, title            : string, subtitle    : string, hasLeftCallout : bool, hasRightCallout : bool, onLeftCalloutPress : fn(), onRightCalloutPress : fn(), tintColor : string, image : Image.propTypes.source, id : string}]
+    legalLabelInsets       : {top : number, left      : number, bottom        : number, right          : number}
+    mapType                : enum('standard', 'satellite', 'hybrid')
+    maxDelta               : number
+    minDelta               : number
+    onAnnotationPress      : fn()
+    onRegionChange         : fn()
+    onRegionChangeComplete : fn()
+    overlays               : [{coordinates : [{latitude        : number, longitude     : number}], lineWidth    : number, strokeColor : string, fillColor      : string, id            : string}]
+    pitchEnabled           : bool
+    region                 : {latitude : number, longitude : number, latitudeDelta : number, longitudeDelta : number}
+    rotateEnabled          : bool
+    scrollEnabled          : bool
+    showsUserLocation      : bool
+    style                  : View#style
+    zoomEnabled            : bool
+    androidactive          : bool
+    showsCompass           : bool
+    showsPointsOfInterest  : bool
+
+PickerIOS
+    View props... 
+    itemStyle:itemStylePropType 
+    onValueChange:fn() 
+    selectedValue:any 
+
+    View props... 
+
+ProgressViewIOS
+    View props... 
+    progress:number 
+    progressImage:Image.propTypes.source 
+    progressTintColor:string 
+    progressViewStyle:enum('default', 'bar') 
+    trackImage:Image.propTypes.source 
+    trackTintColor:string 
+
+ScrollView
+    View props... 
+    contentContainerStyle:StyleSheetPropType(ViewStylePropTypes) 
+    horizontal:bool 
+    keyboardDismissMode:enum('none', "interactive", 'on-drag') 
+    keyboardShouldPersistTaps:bool 
+    onContentSizeChange:fn() 
+    onScroll:fn() 
+    removeClippedSubviews:bool 
+    showsHorizontalScrollIndicator:bool 
+    showsVerticalScrollIndicator:bool 
+    style:style 
+        Flexbox...
+        Transforms...
+        backfaceVisibility enum('visible', 'hidden')
+        backgroundColor string
+        borderColor string
+        borderTopColor string
+        borderRightColor string
+        borderBottomColor string
+        borderLeftColor string
+        borderRadius number
+        borderTopLeftRadius number
+        borderTopRightRadius number
+        borderBottomLeftRadius number
+        borderBottomRightRadius number
+        borderStyle enum('solid', 'dotted', 'dashed')
+        borderWidth number
+        borderTopWidth number
+        borderRightWidth number
+        borderBottomWidth number
+        borderLeftWidth number
+        opacity number
+    overflow:enum('visible', 'hidden')
+    shadowColor:string
+    shadowOffset:{width: number, height: number}
+    shadowOpacity:number
+    shadowRadius:number
+    elevation:number
+        // ios
+    alwaysBounceHorizontal:bool 
+    alwaysBounceVertical:bool 
+    automaticallyAdjustContentInsets:bool 
+    bounces:bool 
+    bouncesZoom:bool 
+    canCancelContentTouches:bool 
+    centerContent:bool 
+    contentInset:{top: number, left: number, bottom: number, right: number} 
+    contentOffset:PointPropType 
+    decelerationRate:number 
+    directionalLockEnabled:bool 
+    maximumZoomScale:number 
+    minimumZoomScale:number 
+    onRefreshStart:fn() 
+    onScrollAnimationEnd:fn() 
+    pagingEnabled:bool 
+    scrollEnabled:bool 
+    scrollEventThrottle:number 
+    scrollIndicatorInsets:{top: number, left: number, bottom: number, right: number} 
+    scrollsToTop:bool 
+    snapToAlignment:enum('start', "center", 'end') 
+    snapToInterval:number 
+    stickyHeaderIndices:[number] 
+    zoomScale:number 
+
+SegmentedControlIOS
+    View props... 
+    enabled:bool 
+    momentary:bool 
+    onChange:fn() 
+    onValueChange:fn() 
+    selectedIndex:number 
+    tintColor:string 
+    values:[string] 
+
+SliderIOS
+    View props... 
+    disabled:bool 
+    maximumTrackTintColor:string 
+    maximumValue:number 
+    minimumTrackTintColor:string 
+    minimumValue:number 
+    onSlidingComplete:fn() 
+    onValueChange:fn() 
+    step:number 
+    style:View#style 
+    thumbImage:Image.propTypes.source 
+    trackImage:Image.propTypes.source 
+    value:number 
+
+TabBarIOS
+    View props... 
+    barTintColor:string 
+    style:View#style 
+    tintColor:string 
+    translucent:bool 
+
+TabBarIOS.Item
+    View props...
+    badge              : string, number
+    icon               : Image.propTypes.source
+    onPress            : fn()
+    selected           : bool
+    selectedIcon       : Image.propTypes.source
+    style              : View.style
+    systemIcon         : enum(
+        'bookmarks',
+        'contacts',
+        'downloads',
+        'favorites',
+        'featured',
+        'history',
+        'more',
+        'most-recent',
+        'most-viewed',
+        'recents',
+        'search',
+        'top-rated'
+    )
+    title              : string
+
+SwitchIOS
+    View props... 
+    disabled:bool 
+    onTintColor:string 
+    onValueChange:fn() 
+    thumbTintColor:string 
+    tintColor:string 
+    value:bool 
+
+TextInput
+    View props... 
+    autoCapitalize:enum('none', 'sentences', 'words', 'characters') 
+    autoCorrect:bool 
+    autoFocus:bool 
+    defaultValue:string 
+    editable:bool 
+    keyboardType:enum("default", 'numeric', 'email-address', "ascii-capable", 'numbers-and-punctuation', 'url', 'number-pad', 'phone-pad', 'name-phone-pad', 'decimal-pad', 'twitter', 'web-search') 
+    maxLength:number 
+    multiline:bool 
+    onBlur:fn() 
+    onChange:fn() 
+    onChangeText:fn() 
+    onEndEditing:fn() 
+    onFocus:fn() 
+    onLayout:fn()({x, y, width, height})
+    onSubmitEditing:fn() 
+    placeholder:string 
+    placeholderTextColor:string 
+    secureTextEntry:bool 
+    style:Text#style 
+    testID:string 
+    value:string 
+
+    ios blurOnSubmit:bool 
+    ios clearButtonMode:enum('never', 'while-editing', 'unless-editing', 'always') 
+    ios clearTextOnFocus:bool 
+    ios enablesReturnKeyAutomatically:bool 
+    ios keyboardAppearance:enum('default', 'light', 'dark') 
+    ios onKeyPress:fn() 
+    ios returnKeyType:enum('default', 'go', 'google', 'join', 'next', 'route', 'search', 'send', 'yahoo', 'done', 'emergency-call') 
+    ios selectTextOnFocus:bool 
+    ios selectionState:DocumentSelectionState 
+
+    android textAlign:enum('start', 'center', 'end') 
+    android textAlignVertical:enum('top', 'center', 'bottom') 
+    android underlineColorAndroid:string 
+    android numberOfLines:number 
+
+Text
+    allowFontScaling:bool 
+    numberOfLines:number 
+    onLayout:fn() 
+        {nativeEvent: {layout: {x, y, width, height}}}
+    onPress:fn() 
+    style style 
+        View#style...
+        color string
+        fontFamily string
+        fontSize number
+        fontStyle enum('normal', 'italic')
+        fontWeight enum("normal", 'bold', '100', '200', '300', '400', '500', '600', '700', '800', '900')
+        letterSpacing number
+        lineHeight number
+        textAlign enum("auto", 'left', 'right', 'center', 'justify')
+        textDecorationLine enum("none", 'underline', 'line-through', 'underline line-through')
+        textDecorationStyle enum("solid", 'double', 'dotted', 'dashed')
+        textDecorationColor string
+        writingDirection enum("auto", 'ltr', 'rtl')
+    testID:string 
+    ios suppressHighlighting:bool 
+
+TouchableHighlight
+    TouchableWithoutFeedback props... 
+    activeOpacity:number 
+    onHideUnderlay:fn() 
+    onShowUnderlay:fn() 
+    style:View#style 
+    underlayColor:string 
+
+TouchableOpacity
+    TouchableWithoutFeedback props... 
+    activeOpacity:number 
+
+TouchableWithoutFeedback
+    accessibilityComponentType:View.AccessibilityComponentType 
+    accessibilityTraits:View.AccessibilityTraits, [View.AccessibilityTraits] 
+    accessible:bool 
+    delayLongPress:number 
+    delayPressIn:number 
+    delayPressOut:number 
+    onLayout:fn() 
+        {nativeEvent: {layout: {x, y, width, height}}}
+    onLongPress:fn() 
+    onPress:fn() 
+    onPressIn:fn() 
+    onPressOut:fn() 
+    pressRetentionOffset:{top: number, left: number, bottom: number, right: number} 
+
+View
+    accessibilityLabel:string 
+    accessible:bool 
+    onAccessibilityTap:fn() 
+    onLayout:fn() 
+        {nativeEvent: { layout: {x, y, width, height}}}.
+    onMagicTap:fn() 
+    onMoveShouldSetResponder:fn() 
+    onMoveShouldSetResponderCapture:fn() 
+    onResponderGrant:fn() 
+    onResponderMove:fn() 
+    onResponderReject:fn() 
+    onResponderRelease:fn() 
+    onResponderTerminate:fn() 
+    onResponderTerminationRequest:fn() 
+    onStartShouldSetResponder:fn() 
+    onStartShouldSetResponderCapture:fn() 
+    pointerEvents:enum('box-none', 'none', 'box-only', 'auto') 
+    removeClippedSubviews:bool 
+    style:style 
+        Flexbox...
+        Transforms...
+        backfaceVisibility enum('visible', 'hidden')
+        backgroundColor string
+        borderColor string
+        borderTopColor string
+        borderRightColor string
+        borderBottomColor string
+        borderLeftColor string
+        borderRadius number
+        borderTopLeftRadius number
+        borderTopRightRadius number
+        borderBottomLeftRadius number
+        borderBottomRightRadius number
+        borderStyle enum('solid', 'dotted', 'dashed')
+        borderWidth number
+        borderTopWidth number
+        borderRightWidth number
+        borderBottomWidth number
+        borderLeftWidth number
+        opacity number
+        overflow enum('visible', 'hidden')
+        shadowColor string
+        shadowOffset {width: number, height: number}
+        shadowOpacity number
+        shadowRadius number
+        elevation number
+    testID:string 
+
+    androidaccessibilityComponentType:AccessibilityComponentType 
+    androidaccessibilityLiveRegion:enum('none', 'polite', 'assertive') 
+    androidcollapsable:bool 
+    androidimportantForAccessibility:enum('auto', 'yes', 'no', 'no-hide-descendants') 
+    androidneedsOffscreenAlphaCompositing:bool 
+    androidrenderToHardwareTextureAndroid:bool 
+
+    iosaccessibilityTraits:AccessibilityTraits, [AccessibilityTraits] 
+    iosshouldRasterizeIOS:bool 
+
+WebView {
+    View props... 
+    automaticallyAdjustContentInsets:bool 
+    bounces:bool
+    contentInset:{top: number, left: number, bottom: number, right: number} 
+    html:string 
+    injectedJavaScript:string 
+    onNavigationStateChange:fn() 
+    renderError:fn() 
+    renderLoading:fn() 
+    scrollEnabled:bool 
+    startInLoadingState:bool 
+    style:View#style 
+    url:string 
+    iosallowsInlineMediaPlayback:bool 
+    androidjavaScriptEnabledAndroid:bool 
+    iosonShouldStartLoadWithRequest:fn() 
+    iosscalesPageToFit:bool 
+}
+
+// android
+DrawerLayoutAndroid {
+    View props... 
+    drawerPosition       : enum(DrawerConsts.DrawerPosition.Left, DrawerConsts.DrawerPosition.Right)
+    drawerWidth          : number
+    keyboardDismissMode  : enum('none', "on-drag")
+    onDrawerClose        : fn()
+    onDrawerOpen         : fn()
+    onDrawerSlide        : fn()
+    onDrawerStateChanged : fn()
+    renderNavigationView : fn()
+}
+
+ProgressBarAndroid {
+    color:string 
+    indeterminate:indeterminateType 
+    progress:number 
+    styleAttr:STYLE_ATTRIBUTES 
+        Horizontal
+        Small
+        Large
+        Inverse
+        SmallInverse
+        LargeInverse
+    testID:string 
+}

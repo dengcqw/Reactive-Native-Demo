@@ -6,6 +6,9 @@
 var React = require('react-native');
 var PAOverseaCustomerAddingInfo = require('./PAOverseaCustomerAddingInfo');
 var FlexExample = require('./flexExamples');
+var TabBarExample = require('./TabBarIOSExample');
+var PANavigator = require('./NavigatorExample.js');
+var GridlayoutSample = require('./GridlayoutSample.js');
 
 var {
     AppRegistry,
@@ -16,13 +19,16 @@ var {
 
 var AwesomeProject = React.createClass({
     render: function() {
+                //< PAOverseaCustomerAddingInfo />
+                //< FlexExample />
+                //< TabBarExample />
+                //<PANavigator />
         return (
             < View style = { styles.container } >
-                < PAOverseaCustomerAddingInfo />
-                < FlexExample />
+            < GridlayoutSample />
             < /View >
         );
-    }
+    },
 });
 
 var styles = StyleSheet.create({
@@ -33,6 +39,9 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'stretch',
     },
+    tabBarStyle: {
+
+    }
 });
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
