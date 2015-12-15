@@ -7,7 +7,6 @@ var React = require('react-native');
 var PAOverseaCustomerAddingInfo = require('./PAOverseaCustomerAddingInfo');
 var FlexExample = require('./flexExamples');
 var TabBarExample = require('./TabBarIOSExample');
-var PANavigator = require('./NavigatorExample.js');
 var GridlayoutSample = require('./GridlayoutSample.js');
 
 var {
@@ -22,7 +21,6 @@ var AwesomeProject = React.createClass({
                 //< PAOverseaCustomerAddingInfo />
                 //< FlexExample />
                 //< TabBarExample />
-                //<PANavigator />
         return (
             < View style = { styles.container } >
             < GridlayoutSample />

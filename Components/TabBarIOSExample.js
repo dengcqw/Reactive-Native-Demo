@@ -90,7 +90,7 @@ var TabBarExample = React.createClass({
 
                 < TabBarIOS.Item /*more tab*/
                     icon = {
-                        require('./flux.png')
+                        require('./images/flux.png')
                     }
                     title = "More"
                     selected = {

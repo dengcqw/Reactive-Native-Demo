@@ -5,18 +5,23 @@
 'use strict';
 
 var React = require('react-native');
+var GridLayoutView = require('./GridLayoutView.ios.js');
 var {
   AppRegistry,
   StyleSheet,
   Text,
   View,
   Image,
+  Dimensions,
+  ScrollView,
 } = React;
 
+var screenW = Dimensions.get('window').width;
+var screenH = Dimensions.get('window').heigth;
 
 var GridlayoutSample = React.createClass({
     render: function() {
-
+    {
         var part_1_left_view =(
             <View style={[styles.height160, styles.part_1_left,styles.bottomBorder]}>
                 <Text style={[styles.font14, styles.marTop18, styles.marLeft10, styles.green]}>我们约吧</Text>
@@ -59,7 +64,7 @@ var GridlayoutSample = React.createClass({
             </View>
         );
         var part_2_view = (
-            <View style={{borderBottomWidth:0.5,borderTopWidth:0.5, borderColor:'#DDD8CE', marginTop:40, height:65, flexDirection: 'row',}}>
+            <View style={{borderBottomWidth:0.0,borderTopWidth:0.5, borderColor:'#DDD8CE', marginTop:40, height:65, flexDirection: 'row',}}>
                 <View style={[{flex:1,justifyContent:'center', alignItems:'center'}]}>
                     <Text style={{ fontSize:17, color:'#FF7F60', fontWeight:'900', }}>一元吃大餐</Text>
                     <Text style={{ fontSize:12, }}>新用户专享</Text>
@@ -71,7 +76,7 @@ var GridlayoutSample = React.createClass({
         );
 
         var part_3_view_1 = (
-            <View style={[{flex:1}, styles.row, styles.rightBorder, styles.bottomBorder]}>
+            <View style={[{flex:1}, styles.row]}>
               <View style={{}}>
                 <Text style={{fontSize:17, color:'#EA6644', fontWeight:'bold', marginLeft:7}}>撸串节狂欢</Text>
                 <Text style={{fontSize:12, color:'#97979A', marginTop:3, marginLeft:7}}>烧烤6.6元起</Text>
@@ -82,7 +87,7 @@ var GridlayoutSample = React.createClass({
             </View>
         );
         var part_3_view_2 = (
-            <View style={[{flex:1}, styles.row, styles.bottomBorder ]}>
+            <View style={[{flex:1}, styles.row]}>
               <View style={{}}>
                 <Text style={{fontSize:17, color:'#EA6644', fontWeight:'bold', marginLeft:7}}>毕业旅行</Text>
                 <Text style={{fontSize:12, color:'#97979A', marginTop:3, marginLeft:7}}>选好酒店才安心</Text>
@@ -93,7 +98,7 @@ var GridlayoutSample = React.createClass({
             </View>
         );
         var part_3_view_3 = (
-            <View style={[{flex:1}, styles.row, styles.rightBorder ]}>
+            <View style={[{flex:1}, styles.row]}>
               <View style={{}}>
                 <Text style={{fontSize:17, color:'#EA6644', fontWeight:'bold', marginLeft:7}}>0元餐来袭</Text>
                 <Text style={{fontSize:12, color:'#97979A', marginTop:3, marginLeft:7}}>免费吃喝玩乐购</Text>
@@ -114,28 +119,29 @@ var GridlayoutSample = React.createClass({
               </View>
             </View>
         );
+    }
 
     return (
-    <View style={{ flex:1 }}>
 
-        <View style={[styles.height160, styles.row]}>
-            {part_1_left_view}
-            {part_1_right_view}
-        </View>
+      <ScrollView
+        automaticallyAdjustContentInsets={false}
+        horizontal={false}
+        style={{ height:screenH, width:screenW }}>
 
-        {part_2_view}
+            <View style={{ flex:1 }}>
 
-        <View style = {[ styles.bottomBorder ]}>
-          <View style={{flexDirection: 'row',}}>
-              {part_3_view_1}
-              {part_3_view_2}
-          </View>
-          <View style={{flexDirection: 'row',}}>
-              {part_3_view_3}
-              {part_3_view_4}
-          </View>
-        </View>
-    </View>
+                <View style={[styles.height160, styles.row]}>
+                    {part_1_left_view}
+                    {part_1_right_view}
+                </View>
+
+                {part_2_view}
+
+                <GridLayoutView column='2' view_height='80'>
+                    {[part_3_view_1,part_3_view_2,part_3_view_3,part_3_view_4,]}
+                </GridLayoutView>
+            </View>
+      </ScrollView>
     );
   }
 });

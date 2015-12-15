@@ -21,13 +21,12 @@ var {
 } = React;
 
 /**
- * Const Variable
+ * Global Variable
  */
 
 /**
  * Reactive Native Class
  */
-
 var ComponentName = React.createClass({
     getInitialState: function() {
         return { // variable here can use by 'this.state'
@@ -52,7 +51,6 @@ var styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
     },
     // other view element style here
-
 });
 
 /**
