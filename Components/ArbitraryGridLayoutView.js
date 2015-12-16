@@ -15,55 +15,86 @@ var {
     StyleSheet,
     View,
     Dimensions,
+    AlertIOS,
+    Text,
 } = React;
 
 /**
  * Globle Variable
  */
 var topLayout;
+var topViewList;
+
+var alert = function(msg) {
+    AlertIOS.alert(
+        'Title',
+        String(msg),
+        [
+            {text: 'OK', onPress: () => console.log('OK Pressed!')},
+            {text: 'Cancel', onPress: () => console.log('Cancel Pressed!'), style: 'cancel'},
+        ]
+    )
+}
+
+function assert(condition, message) {
+    if (!condition) throw new Error(message || "Assertion failed");
+}
+
+var output = [];
 
 /**
  * Reactive Native Class
  */
 var ArbitraryGridView = React.createClass({
-    getInitialState: function() {
-        return { // variable here can use by 'this.state'
-        };
-    },
 
-    _layoutSubViews: function(layout, containerFlex, viewList, isTopLayout) {
+    _layoutSubViews: function(layout, viewList) {
         var flexs = layout.flexRatio.split(':');
+        flexs = flexs.map(function (element, index) {
+            return Number(element);
+        });
+
         var direction;
         var subLayouts;
-        var borderStyle = [];
+        var borderStyle;
+
         if ( layout.left === undefined ) {
-            direction = 'column';
+            direction = 'column',
             subLayouts = [layout.top, layout.bottom];
-            borderStyle.push(styles.bottomBorder);
+            borderStyle = styles.bottomBorder;
         } else {
-            direction = 'row';
+            direction = 'row',
             subLayouts = [layout.left, layout.right];
-            borderStyle.push(styles.rightBorder);
-        }
-        if ( isTopLayout ) {
-            borderStyle.push(style.topBorder);
-            borderStyle.push(style.bottomBorder);
+            borderStyle = styles.rightBorder;
         }
 
         var subViews = [];
-        for (var layout in subLayouts) {
-            var idx = subLayouts[layout];
+        for (var idx = 0; idx < subLayouts.length; idx++) {
+
+            var layout = subLayouts[idx];
+            var dynamicKey;
+            var subView;
+
             if (layout.flexRatio == undefined) { // no more subview
-                subViews.push(
-                    < View style = { idx===0? borderStyle : {} } >
-                        { viewList[idx] }
-                    < /View >
-                );
+                subView = viewList[idx];
+                dynamicKey = 'ArbGrd' + '-' + direction + String(topViewList.indexOf(subView));
             } else {
-                subViews.push(
-                    this._layoutSubViews(layout, flexs[idx], viewList.slice(idx, idx+2), false)
-                );
+                var partViews = viewList.slice(idx);
+                subView = this._layoutSubViews(layout, partViews);
+                dynamicKey = 'ArbGrd' + '-' + 'sub' + '-' + String(viewList.length);
             }
+            output.push(dynamicKey);
+
+            if ( layout.left === undefined ) {
+                direction = 'column';
+            } else {
+                direction = 'row';
+            }
+
+            subViews.push(
+                < View key ={dynamicKey} style = {[ idx===0? borderStyle : {}, {flex:flexs[idx], flexDirection:direction, overflow: 'hidden',} ]} >
+                    {subView}
+                < /View >
+            );
         }
 
         return subViews;
@@ -71,26 +102,35 @@ var ArbitraryGridView = React.createClass({
 
     componentWillMount: function () {
         if (this.props.children != undefined) {
-            viewList = this.props.children;
+            topViewList = this.props.children;
         } else if (this.props.views != undefined){
-            viewList = this.props.views;
+            topViewList = this.props.views;
         }
 
         topLayout = this.props.layout;
     },
 
     render: function() {
-        var direction = (layout.left === undefined)? 'column' : 'row';
-        return this._layoutSubViews(topLayout, 1, viewList, true);
+        var direction = (topLayout.left === undefined)? 'column' : 'row';
+
+        return (
+            <View style = {[styles.container, styles.topBorder, styles.bottomBorder, {flexDirection:direction} ]}>
+                { this._layoutSubViews(topLayout, topViewList) }
+            </View>
+        );
+    },
+
+    componentDidMount:function () {
+         alert(output);
     },
 });
 
 var styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#F5FCFF',
+        height:160,
+        overflow: 'hidden',
     },
     topBorder: {
         borderTopWidth:0.5,
@@ -121,23 +161,24 @@ var styles = StyleSheet.create({
 exports.title = 'template file'
 exports.description = 'This is template file for iOS Reactive Native develop! Enjoy it.'
 exports.examples = {
-    <ArbitraryGridView
-        layout = {
-            {
-                left:{
-                    top:{},
-                    bottom:{},
-                    flexRatio:"1:2"
-                },
-                right:{},
-                flexRatio:"1:1",
+    render: function() {
+        <ArbitraryGridView
+            layout = {
+                {
+                    left:{
+                        top:{},
+                        bottom:{},
+                        flexRatio:"1:2"
+                    },
+                    right:{},
+                    flexRatio:"1:1",
+                }
             }
-        }
-        views = {[
-            topView,bottomView,rightView,
-        ]}
-    />
-
+            views = {[
+                topView,bottomView,rightView,
+            ]}
+        />
+    },
 }
 
 /**

@@ -6,6 +6,7 @@
 
 var React = require('react-native');
 var GridLayoutView = require('./GridLayoutView.ios.js');
+var ArbitraryGridView = require('./ArbitraryGridLayoutView.js');
 var {
   AppRegistry,
   StyleSheet,
@@ -23,14 +24,14 @@ var GridlayoutSample = React.createClass({
     render: function() {
     {
         var part_1_left_view =(
-            <View style={[styles.height160, styles.part_1_left,styles.bottomBorder]}>
+            <View key ='part_1_left_view' style={styles.part_1_left}>
                 <Text style={[styles.font14, styles.marTop18, styles.marLeft10, styles.green]}>我们约吧</Text>
                 <Text style={[styles.font10, styles.marTop14, styles.marLeft10]}>恋爱家人好朋友</Text>
                 <Image style={[styles.yue]} source={{uri: 'http://p0.meituan.net/mmc/fe4d2e89827aa829e12e2557ded363a112289.png'}}></Image>
             </View>
         );
         var part_1_right_top_view = (
-            <View style={[{flex:1, flexDirection:'row',}]}>
+            <View key='part_1_right_top_view' style={[{flex:1, flexDirection:'row',}]}>
                 <View style={{flex:1, justifyContent:'center' }}>
                     <Text style={[styles.font14, {marginLeft:30}, styles.red]}>超低价值</Text>
                     <Text style={[styles.font14, {fontSize:12, marginTop:14, marginLeft:30,color: 'black'}]}>十元惠生活</Text>
@@ -41,30 +42,35 @@ var GridlayoutSample = React.createClass({
             </View>
         );
         var part_1_right_bottom_view_1 = (
-            <View style={[{flex:1,justifyContent:'center'},styles.rightBorder, styles.bottomBorder]}>
-                <Text style={{color:'#F742AB', marginLeft:5,fontWeight:'bold', fontSize:15, marginTop:8}}>聚餐宴请</Text>
+            <View key='part_1_right_bottom_view_1' style={[{flex:1,justifyContent:'center', },]}>
+                        <Text style={{color:'#F742AB', marginLeft:5,fontWeight:'bold', fontSize:15, marginTop:8}}>聚餐宴请</Text>
                 <Text style={{fontSize:12,marginTop:4, marginLeft:5}}>朋友家人常聚聚</Text>
                 <Image style={{height:25,width:25, alignSelf: 'center'}} source={{uri: 'http://p1.meituan.net/mmc/08615b8ae15d03c44cc5eb9bda381cb212714.png'}}></Image>
             </View>
         );
         var part_1_right_bottom_view_2 = (
-            <View style={[{flex:1,justifyContent:'center'}, styles.bottomBorder]}>
+            <View key='part_1_right_bottom_view_2' style={[{flex:1,justifyContent:'center'}, ]}>
                 <Text style={[styles.font14, {color:'#FF8601', marginTop:8, marginLeft:5}]}>名店抢购</Text>
                 <Text style={[{marginLeft:5, fontSize:12,marginTop:4,}]}>还有</Text>
                 <Text style={[{marginLeft:5, fontSize:12,marginTop:4,}]}>12:06:12分</Text>
             </View>
         );
-        var part_1_right_view = (
-            <View style={[styles.height160, styles.part_1_right, {flexDirection:'column'}]}>
-                {part_1_right_top_view}
-                <View style={[{flex:1, flexDirection:'row', borderTopWidth:0.5, borderColor:'#DDD8CE'}]}>
-                    {part_1_right_bottom_view_1}
-                    {part_1_right_bottom_view_2}
-                </View>
+        var part_1_right_bottom_view_3 = (
+            <View key='part_1_right_bottom_view_3' style={[{flex:1,justifyContent:'center', },]}>
+                        <Text style={{color:'#F742AB', marginLeft:5,fontWeight:'bold', fontSize:15, marginTop:8}}>聚餐宴请</Text>
+                <Text style={{fontSize:12,marginTop:4, marginLeft:5}}>朋友家人常聚聚</Text>
+                <Image style={{height:25,width:25, alignSelf: 'center'}} source={{uri: 'http://p1.meituan.net/mmc/08615b8ae15d03c44cc5eb9bda381cb212714.png'}}></Image>
+            </View>
+        );
+        var part_1_right_bottom_view_4 = (
+            <View key='part_1_right_bottom_view_4' style={[{flex:1,justifyContent:'center'}, ]}>
+                <Text style={[styles.font14, {color:'#FF8601', marginTop:8, marginLeft:5}]}>名店抢购</Text>
+                <Text style={[{marginLeft:5, fontSize:12,marginTop:4,}]}>还有</Text>
+                <Text style={[{marginLeft:5, fontSize:12,marginTop:4,}]}>12:06:12分</Text>
             </View>
         );
         var part_2_view = (
-            <View style={{borderBottomWidth:0.0,borderTopWidth:0.5, borderColor:'#DDD8CE', marginTop:40, height:65, flexDirection: 'row',}}>
+            <View key='part_2_view' style={{borderBottomWidth:0.0,borderTopWidth:0.5, borderColor:'#DDD8CE', marginTop:40, height:65, flexDirection: 'row',}}>
                 <View style={[{flex:1,justifyContent:'center', alignItems:'center'}]}>
                     <Text style={{ fontSize:17, color:'#FF7F60', fontWeight:'900', }}>一元吃大餐</Text>
                     <Text style={{ fontSize:12, }}>新用户专享</Text>
@@ -76,7 +82,7 @@ var GridlayoutSample = React.createClass({
         );
 
         var part_3_view_1 = (
-            <View style={[{flex:1}, styles.row]}>
+            <View key='part_3_view_1' style={[{flex:1}, styles.row]}>
               <View style={{}}>
                 <Text style={{fontSize:17, color:'#EA6644', fontWeight:'bold', marginLeft:7}}>撸串节狂欢</Text>
                 <Text style={{fontSize:12, color:'#97979A', marginTop:3, marginLeft:7}}>烧烤6.6元起</Text>
@@ -87,7 +93,7 @@ var GridlayoutSample = React.createClass({
             </View>
         );
         var part_3_view_2 = (
-            <View style={[{flex:1}, styles.row]}>
+            <View key='part_3_view_2' style={[{flex:1}, styles.row]}>
               <View style={{}}>
                 <Text style={{fontSize:17, color:'#EA6644', fontWeight:'bold', marginLeft:7}}>毕业旅行</Text>
                 <Text style={{fontSize:12, color:'#97979A', marginTop:3, marginLeft:7}}>选好酒店才安心</Text>
@@ -98,7 +104,7 @@ var GridlayoutSample = React.createClass({
             </View>
         );
         var part_3_view_3 = (
-            <View style={[{flex:1}, styles.row]}>
+            <View key='part_3_view_3' style={[{flex:1}, styles.row]}>
               <View style={{}}>
                 <Text style={{fontSize:17, color:'#EA6644', fontWeight:'bold', marginLeft:7}}>0元餐来袭</Text>
                 <Text style={{fontSize:12, color:'#97979A', marginTop:3, marginLeft:7}}>免费吃喝玩乐购</Text>
@@ -109,7 +115,7 @@ var GridlayoutSample = React.createClass({
             </View>
         );
         var part_3_view_4 = (
-            <View style={[{flex:1}, styles.row ]}>
+            <View key='part_3_view_4' style={[{flex:1}, styles.row ]}>
               <View style={{}}>
                 <Text style={{fontSize:17, color:'#EA6644', fontWeight:'bold', marginLeft:7}}>热门团购</Text>
                 <Text style={{fontSize:12, color:'#97979A', marginTop:3, marginLeft:7}}>大家都在买什么</Text>
@@ -121,6 +127,24 @@ var GridlayoutSample = React.createClass({
         );
     }
 
+    var arbitraryLayout = {
+        left:{
+            top:{},
+            bottom:{},
+            flexRatio:'1:1',
+        },
+        right:{
+            top:{},
+            bottom:{
+                left:{},
+                right:{},
+                flexRatio:'1:1',
+            },
+            flexRatio:'1:1',
+        },
+        flexRatio:'1:2',
+    };
+
     return (
 
       <ScrollView
@@ -130,15 +154,25 @@ var GridlayoutSample = React.createClass({
 
             <View style={{ flex:1 }}>
 
-                <View style={[styles.height160, styles.row]}>
-                    {part_1_left_view}
-                    {part_1_right_view}
-                </View>
+                < ArbitraryGridView layout = {arbitraryLayout} >
+                {[
+                    part_1_right_bottom_view_3,
+                    part_1_right_bottom_view_4,
+                    part_1_right_top_view,
+                    part_1_right_bottom_view_1,
+                    part_1_right_bottom_view_2,
+                ]}
+                < /ArbitraryGridView >
 
                 {part_2_view}
 
                 <GridLayoutView column='2' view_height='80'>
-                    {[part_3_view_1,part_3_view_2,part_3_view_3,part_3_view_4,]}
+                    {[
+                        part_3_view_1,
+                        part_3_view_2,
+                        part_3_view_3,
+                        part_3_view_4,
+                    ]}
                 </GridLayoutView>
             </View>
       </ScrollView>
@@ -182,10 +216,8 @@ var styles = StyleSheet.create({
     },
     part_1_left:{
         flex: 1,
-        borderColor: '#DCD7CD',
-        borderRightWidth: 0.5,
-        borderBottomWidth: 0.5,
-        borderTopWidth: 0.5,
+        height: 167,
+
     },
     part_1_right:{
         flex:2,

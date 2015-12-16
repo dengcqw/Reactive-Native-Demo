@@ -50,7 +50,7 @@ var GridLayoutView = React.createClass({
         for (var i = 0; i < gridCount; i++) {
 
             viewList.push(
-                <View style={gridStyles[i]}>
+                <View key = {'Grid'+String(i)} style={[ gridStyles[i], {overflow: 'hidden',} ]}>
                     {contentList[i]}
                 </View>
             );
