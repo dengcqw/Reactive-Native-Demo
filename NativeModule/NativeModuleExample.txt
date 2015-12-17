@@ -1,0 +1,173 @@
+// CalendarManager.h
+#import "RCTBridgeModule.h"
+
+@interface CalendarManager : NSObject <RCTBridgeModule>
+@end
+
+// CalendarManager.m
+@implementation CalendarManager
+
+RCT_EXPORT_MODULE(); // if not specifies a name, use class name to access the module.
+
+
+/*
+ * explicitly expose a method
+ */
+RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location)
+{
+  RCTLogInfo(@"Pretending to create an event %@ at %@", name, location);
+}
+
+/* 
+    RCT_EXPORT_METHOD supports all standard JSON object types, such as:
+
+    string (NSString)
+    number (NSInteger, float, double, CGFloat, NSNumber)
+    boolean (BOOL, NSNumber)
+    array (NSArray) of any types from this list
+    map (NSDictionary) with string keys and values of any type from this list
+    function (RCTResponseSenderBlock)
+ * The RCTConvert helper functions all accept a JSON value as input 
+ * and map it to a native Objective-C type or class.
+ * NSStringArray, UIColorArray make sure types correct.
+ */
+RCT_EXPORT_METHOD(addEvent:(NSString *)name location:(NSString *)location date:(NSString *)ISO8601DateString)
+{
+  NSDate *date = [RCTConvert NSDate:ISO8601DateString];
+}
+
+/*
+ * RCTResponseSenderBlock accepts only one argument - an array of parameters to pass to the JavaScript callback.
+ * First para is error, if no error, use [NSNull null].
+ * or Store the callback and invoke it later or multiple.
+ * Send js error, use RCTMakeError
+ */
+RCT_EXPORT_METHOD(findEvents:(RCTResponseSenderBlock)callback)
+{
+  NSArray *events = ...
+  callback(@[[NSNull null], events]);
+}
+
+/*
+ * promises
+ */
+
+RCT_REMAP_METHOD(findEvents,
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+  NSArray *events = ...
+  if (events) {
+    resolve(events);
+  } else {
+    reject(error);
+  }
+}
+
+- (dispatch_queue_t)methodQueue
+{
+  return dispatch_get_main_queue();
+}
+
+/*
+ * export constant only at init time.
+ */
+- (NSDictionary *)constantsToExport {
+  return @{ @"firstDayOfTheWeek": @"Monday" };
+}
+
+- (NSDictionary *)constantsToExport {
+  return @{ @"statusBarAnimationNone" : @(UIStatusBarAnimationNone),
+            @"statusBarAnimationFade" : @(UIStatusBarAnimationFade),
+            @"statusBarAnimationSlide" : @(UIStatusBarAnimationSlide) }
+};
+
+RCT_EXPORT_METHOD(updateStatusBarAnimation:(UIStatusBarAnimation)animation
+                                completion:(RCTResponseSenderBlock)callback)
+@end
+
+/*
+ * Call Native Module Method in Javascript
+ */
+var CalendarManager = require('react-native').NativeModules.CalendarManager;
+// js method is this part of oc method
+// or RCT_REMAP_METHOD() to specifies a method
+CalendarManager.addEvent('Birthday Party', '4 Privet Drive, Surrey'); 
+
+/*
+ * The return type of bridge methods is always void. React Native bridge is asynchronous, 
+ * so the only way to pass a result to JavaScript is by using callbacks or emitting events 
+ */
+
+ /*
+  * callback sample
+  */
+ CalendarManager.findEvents((error, events) => {
+     if (error) {
+         console.error(error);
+         } else {
+         this.setState({events: events});
+     }
+ })
+
+ /*
+  * promises
+  */
+ async function updateEvents() {
+  try {
+    var events = await CalendarManager.findEvents();
+
+    this.setState({ events });
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+updateEvents();
+
+/*
+ * Enum Constants
+ * imp RCTConvert category
+ */
+ @implementation RCTConvert (StatusBarAnimation)
+
+ RCT_ENUM_CONVERTER( UIStatusBarAnimation, (@{ 
+     @"statusBarAnimationNone" : @(UIStatusBarAnimationNone),
+     @"statusBarAnimationFade" : @(UIStatusBarAnimationFade),
+     @"statusBarAnimationSlide" : @(UIStatusBarAnimationSlide)
+ },
+ UIStatusBarAnimationNone, integerValue)
+
+ @end
+
+/*
+ * sending events to javascript
+ */
+#import "RCTBridge.h"
+#import "RCTEventDispatcher.h"
+
+@implementation CalendarManager
+
+@synthesize bridge = _bridge;
+
+- (void)calendarEventReminderReceived:(NSNotification *)notification
+{
+  NSString *eventName = notification.userInfo[@"name"];
+  [self.bridge.eventDispatcher sendAppEventWithName:@"EventReminder"
+                                               body:@{@"name": eventName}];
+}
+
+@end
+
+``` javaScript 
+var { NativeAppEventEmitter } = require('react-native');
+
+var subscription = NativeAppEventEmitter.addListener(
+  'EventReminder',
+  (reminder) => console.log(reminder.name)
+);
+...
+// Don't forget to unsubscribe, typically in componentWillUnmount
+subscription.remove();
+```
+
