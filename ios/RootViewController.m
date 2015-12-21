@@ -23,6 +23,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
   NSURL *jsCodeLocation;
+//  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/UIExplorerApp.ios.bundle?platform=ios&dev=true"];
+//  self.rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
+//                                                      moduleName:@"UIExplorerApp"
+//                                               initialProperties:nil
+//                                                   launchOptions:nil];
+  
   jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
   self.rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"AwesomeProject"

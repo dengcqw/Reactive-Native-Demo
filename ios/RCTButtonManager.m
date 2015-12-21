@@ -17,10 +17,18 @@ RCT_EXPORT_MODULE()
   UIButton *aButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 120, 45)];
   [aButton setTitle:@"test button" forState:UIControlStateNormal];
   [aButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+  [aButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
   aButton.backgroundColor = [UIColor clearColor];
   aButton.showsTouchWhenHighlighted = YES;
+  [aButton addTarget:self action:@selector(buttonAction:) forControlEvents:(UIControlEventTouchUpInside)];
   NSLog(@"button manager create view");
   return aButton;
+}
+
+RCT_EXPORT_VIEW_PROPERTY(enabled, BOOL)
+
+- (void)buttonAction:(id)sender {
+  NSLog(@"button action");
 }
 
 @end

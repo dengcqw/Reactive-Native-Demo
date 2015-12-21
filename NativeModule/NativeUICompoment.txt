@@ -13,31 +13,76 @@ Vending a view is simple:
     Implement the -(UIView *)view method
 
 ''' oc
-// RCTMapManager.m
-#import <MapKit/MapKit.h>
+    // RCTMapManager.m
+    #import <MapKit/MapKit.h>
 
-#import "RCTViewManager.h"
+    #import "RCTViewManager.h"
 
-@interface RCTMapManager : RCTViewManager
-@end
+    @interface RCTMapManager : RCTViewManager
+    @end
 
-@implementation RCTMapManager
+    @implementation RCTMapManager
 
-RCT_EXPORT_MODULE()
+    RCT_EXPORT_MODULE()
 
-- (UIView *)view
-{
-    return [[MKMapView alloc] init];
-}
+    - (UIView *)view
+    {
+          MKMapView *map = [[MKMapView alloc] init];
+          map.delegate = self;
+          return map;   
+    }
 
-@end
+    RCT_EXPORT_VIEW_PROPERTY(pitchEnabled, BOOL)
+
+    RCT_CUSTOM_VIEW_PROPERTY(region, MKCoordinateRegion, RCTMap)
+    {
+      [view setRegion:json ? [RCTConvert MKCoordinateRegion:json] : defaultView.region animated:YES];
+    }
+
+    #pragma mark MKMapViewDelegate
+
+    - (void)mapView:(RCTMap *)mapView regionDidChangeAnimated:(BOOL)animated
+    {
+      MKCoordinateRegion region = mapView.region;
+      NSDictionary *event = @{
+        @"target": mapView.reactTag,
+        @"region": @{
+          @"latitude": @(region.center.latitude),
+          @"longitude": @(region.center.longitude),
+          @"latitudeDelta": @(region.span.latitudeDelta),
+          @"longitudeDelta": @(region.span.longitudeDelta),
+        }
+      };
+      [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
+    }
+
+    @end
 '''
 
 ''' js 
-// MapView.js
+    // MapView.js
 
-var { requireNativeComponent } = require('react-native');
+    var React = require('react-native');
+    var { requireNativeComponent } = React;
 
-// requireNativeComponent automatically resolves this to "RCTMapManager"
-module.exports = requireNativeComponent('RCTMap', null);
+    class MapView extends React.Component {
+      render() {
+        return <RCTMap {...this.props} />;
+      }
+    }
+
+    MapView.propTypes = {
+      /**
+       * When this property is set to `true` and a valid camera is associated
+       * with the map, the camera’s pitch angle is used to tilt the plane
+       * of the map. When this property is set to `false`, the camera’s pitch
+       * angle is ignored and the map is always displayed as if the user
+       * is looking straight down onto it.
+       */
+      pitchEnabled: React.PropTypes.bool,
+    };
+
+    var RCTMap = requireNativeComponent('RCTMap', MapView);
+
+    module.exports = MapView;
 '''

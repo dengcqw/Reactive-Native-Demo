@@ -168,7 +168,7 @@ ScrollView
     onScroll:fn() 
     removeClippedSubviews:bool 
     showsHorizontalScrollIndicator:bool 
-    showsVerticalScrollIndicator:bool 
+    showsVerticalScroll/Indicator:bool 
     style:style 
         Flexbox...
         Transforms...
