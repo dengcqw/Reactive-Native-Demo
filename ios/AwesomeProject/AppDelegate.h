@@ -8,9 +8,11 @@
  */
 
 #import <UIKit/UIKit.h>
-//../node_modules/react-native/packager/react-native-xcode.sh
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
+
+@property (nonatomic, strong) NSString *jsBundlePath;
 
 @end

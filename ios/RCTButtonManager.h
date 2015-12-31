@@ -11,3 +11,7 @@
 @interface RCTButtonManager : RCTViewManager
 
 @end
+
+@interface RCTButton : UIButton
+@property (nonatomic, copy) RCTBubblingEventBlock onPress;
+@end

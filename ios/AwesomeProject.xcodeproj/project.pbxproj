@@ -26,6 +26,12 @@
 		AA4402371C228C13002CF219 /* RCTButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4402361C228C13002CF219 /* RCTButtonManager.m */; };
 		AA49747C1C225C9300C4E373 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4974791C225C9300C4E373 /* RootViewController.m */; };
 		AA49747D1C225C9300C4E373 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA49747B1C225C9300C4E373 /* TestViewController.m */; };
+		AA5308131C2F91F400AFB9D1 /* RCTTestMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5308121C2F91F400AFB9D1 /* RCTTestMapManager.m */; };
+		AA53081F1C2F974900AFB9D1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA53081E1C2F974900AFB9D1 /* MapKit.framework */; };
+		AAD8D1881C352A440056C1D8 /* index.ios.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAD8D1871C352A440056C1D8 /* index.ios.bundle */; };
+		AAD8D1941C352AD00056C1D8 /* index.ios.mapview.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AAD8D1931C352AD00056C1D8 /* index.ios.mapview.bundle */; };
+		AAD8D1961C352B9A0056C1D8 /* patch.txt in Resources */ = {isa = PBXBuildFile; fileRef = AAD8D1951C352B9A0056C1D8 /* patch.txt */; };
+		AAD8D1991C352EED0056C1D8 /* libpatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD8D1971C352EED0056C1D8 /* libpatch.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,7 +115,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
@@ -138,6 +143,14 @@
 		AA4974791C225C9300C4E373 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		AA49747A1C225C9300C4E373 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		AA49747B1C225C9300C4E373 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		AA5308111C2F91F400AFB9D1 /* RCTTestMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTTestMapManager.h; sourceTree = "<group>"; };
+		AA5308121C2F91F400AFB9D1 /* RCTTestMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTTestMapManager.m; sourceTree = "<group>"; };
+		AA53081E1C2F974900AFB9D1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		AAD8D1871C352A440056C1D8 /* index.ios.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.ios.bundle; sourceTree = "<group>"; };
+		AAD8D1931C352AD00056C1D8 /* index.ios.mapview.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = index.ios.mapview.bundle; sourceTree = "<group>"; };
+		AAD8D1951C352B9A0056C1D8 /* patch.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = patch.txt; sourceTree = "<group>"; };
+		AAD8D1971C352EED0056C1D8 /* libpatch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpatch.a; sourceTree = "<group>"; };
+		AAD8D1981C352EED0056C1D8 /* patch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patch.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +165,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD8D1991C352EED0056C1D8 /* libpatch.a in Frameworks */,
+				AA53081F1C2F974900AFB9D1 /* MapKit.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -244,7 +259,8 @@
 		13B07FAE1A68108700A75B9A /* AwesomeProject */ = {
 			isa = PBXGroup;
 			children = (
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				AAD8D19B1C352EF80056C1D8 /* patchlib */,
+				AADCE41D1C354BFB00DC1C05 /* PatchFiles */,
 				AA4974781C225C9300C4E373 /* RootViewController.h */,
 				AA4974791C225C9300C4E373 /* RootViewController.m */,
 				AA49747A1C225C9300C4E373 /* TestViewController.h */,
@@ -259,6 +275,8 @@
 				AA4402331C22771D002CF219 /* NavigationBridge.m */,
 				AA4402351C228C13002CF219 /* RCTButtonManager.h */,
 				AA4402361C228C13002CF219 /* RCTButtonManager.m */,
+				AA5308111C2F91F400AFB9D1 /* RCTTestMapManager.h */,
+				AA5308121C2F91F400AFB9D1 /* RCTTestMapManager.m */,
 			);
 			name = AwesomeProject;
 			sourceTree = "<group>";
@@ -307,6 +325,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				AA53081E1C2F974900AFB9D1 /* MapKit.framework */,
 				13B07FAE1A68108700A75B9A /* AwesomeProject */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* AwesomeProjectTests */,
@@ -323,6 +342,25 @@
 				00E356EE1AD99517003FC87E /* AwesomeProjectTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AAD8D19B1C352EF80056C1D8 /* patchlib */ = {
+			isa = PBXGroup;
+			children = (
+				AAD8D1971C352EED0056C1D8 /* libpatch.a */,
+				AAD8D1981C352EED0056C1D8 /* patch.h */,
+			);
+			name = patchlib;
+			sourceTree = "<group>";
+		};
+		AADCE41D1C354BFB00DC1C05 /* PatchFiles */ = {
+			isa = PBXGroup;
+			children = (
+				AAD8D1951C352B9A0056C1D8 /* patch.txt */,
+				AAD8D1931C352AD00056C1D8 /* index.ios.mapview.bundle */,
+				AAD8D1871C352A440056C1D8 /* index.ios.bundle */,
+			);
+			name = PatchFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -524,8 +562,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD8D1881C352A440056C1D8 /* index.ios.bundle in Resources */,
+				AAD8D1941C352AD00056C1D8 /* index.ios.mapview.bundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				AAD8D1961C352B9A0056C1D8 /* patch.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +587,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				AA4402341C22771D002CF219 /* NavigationBridge.m in Sources */,
+				AA5308131C2F91F400AFB9D1 /* RCTTestMapManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				AA49747D1C225C9300C4E373 /* TestViewController.m in Sources */,
 				AA49747C1C225C9300C4E373 /* RootViewController.m in Sources */,
@@ -625,6 +667,10 @@
 				);
 				INFOPLIST_FILE = AwesomeProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AwesomeProject;
 			};
@@ -641,6 +687,10 @@
 				);
 				INFOPLIST_FILE = AwesomeProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = AwesomeProject;
 			};

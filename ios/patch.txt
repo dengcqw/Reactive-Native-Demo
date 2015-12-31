@@ -1,0 +1,32 @@
+--- index.ios.bundle	2015-12-31 17:17:17.000000000 +0800
++++ index.ios.mapview.bundle	2015-12-31 17:19:19.000000000 +0800
+@@ -1246,7 +1246,7 @@
+ btnTitle:'1'}},
+ 
+ 
+-render:function(){var _this=this;
++render:function(){
+ if(this.state.btnTitle.length>10){
+ this.setState({btnTitle:'1'})}
+ 
+@@ -1257,13 +1257,15 @@
+ 
+ 
+ 
++React.createElement(MapView,{zoomEnabled:true,pitchEnabled:false,style:{height:480,width:300}})))}});
++
++
++
++
++
++
+ 
+ 
+-React.createElement(Button,{
+-style:styles.btn,
+-onPress:function(){return _this.setState({btnTitle:_this.state.btnTitle+'1'})},
+-enabled:this.state.btnEnable,
+-title:this.state.btnTitle})))}});
+ 
+ 
+ 
